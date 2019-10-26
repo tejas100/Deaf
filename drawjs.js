@@ -6,11 +6,11 @@ var canvas, ctx, flag = false,
     currY = 0,
     dot_flag = false;
 
-var x = "black", y = 2;
+var x = "black", y = 12;
 
 
 
-   var timeoutInMiliseconds = 3000;
+   var timeoutInMiliseconds = 2300;
     var timeoutId; 
       
     function startTimer() { 
@@ -33,18 +33,14 @@ var x = "black", y = 2;
     }
     function doInactive() {
       save();
-      erase();
-    
+      erase();    
     }
-
-
-
 
 function init() {
     setupTimers();
     canvas = document.getElementById('can');
     ctx = canvas.getContext("2d");
-    ctx.globalAlpha=255;
+    ctx.globalAlpha=0.9;
     w = canvas.width;
     h = canvas.height;
 
@@ -68,12 +64,8 @@ function color(obj) {
         case "black":
             x = "black";
             break;
-        
+        } 
     }
-    if (x == "white") y = 14;
-    else y = 2;
-
-}
 
 function draw() {
     ctx.beginPath();
@@ -95,7 +87,7 @@ function erase() {
 
 function save() {
 
-    document.getElementById("canvasimg").style.border = "2px solid";
+    document.getElementById("canvasimg").style.border = "5px solid";
     
     
     var dataURL = canvas.toDataURL().replace("image/png", "image/octet-stream");
@@ -103,11 +95,6 @@ function save() {
     var url="https://v2.convertapi.com/convert/web/to/png?Url="+dataURL;
         download(dataURL, "image.png");
         
-        // const canvas = document.getElementById('canvas');
-        
-        // const ctx = canvas.getContext('2d');
-        
-        // ctx.globalAlpha = 0.5;
 }
 function download(dataurl, filename) {
     var a = document.createElement("a");
@@ -128,7 +115,7 @@ function findxy(res, e) {
         dot_flag = true;
         if (dot_flag) {
             ctx.beginPath();
-            ctx.fillStyle = "rgba(0, 0, 0, 0)";
+            ctx.fillStyle = "rgba(1, 0, 0, 0)";
             ctx.fillRect(currX, currY, 2, 2);
             ctx.closePath();
             dot_flag = false;
@@ -147,9 +134,3 @@ function findxy(res, e) {
         }
     }
 }
-
-
-
-
-  
-  
